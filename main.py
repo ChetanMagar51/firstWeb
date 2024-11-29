@@ -16,7 +16,7 @@ def typing_setting():
     return render_template('setting.html')
 
 # Route for typing tes page
-@app.route('/typing_test', methods=['GET'])
+@app.route('/typing_test1', methods=['GET'])
 def typing_test():
     # time = request.args.get('time')
     time = int(request.args.get('time', 60))
