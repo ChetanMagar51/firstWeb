@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Practice</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background:linear-gradient(to bottom right, #9a4fa1, #1a6586);
+  color: #fff;
+}
+
+/* Container */
+.practice-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Titles */
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown */
+.modern-dropdown {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Buttons */
+.modern-button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  color: #fff;
+  background: #1a6586;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modern-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Practice Text */
+.practice-text {
+  font-size: 1.2rem;
+  color: #fff;
+  line-height: 1.8;
+}
+
+/* Hidden Elements */
+.hidden {
+  display: none;
+}
+
+/* Feedback Section */
+.feedback {
+  font-size: 1rem;
+  color: #fff;
+  text-align: left;
+}
+
+  </style>
+</head>
+<body>
+  <div class="practice-container">
+    <!-- Header -->
+    <header>
+      <h1 class="title">Typing Practice</h1>
+      <p class="subtitle">Improve your typing with customizable practice drills!</p>
+    </header>
+
+    <!-- Difficulty Selection -->
+    <div class="card difficulty-card">
+      <h2>Select Difficulty</h2>
+      <select id="difficulty" class="modern-dropdown">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <!-- Start Button -->
+    <div class="card">
+      <button id="start-button" class="modern-button">Start Practice</button>
+    </div>
+
+    <!-- Displayed Practice Text -->
+    <div id="practice-text" class="card practice-text hidden">
+      <!-- Text will be dynamically inserted here -->
+    </div>
+
+    <!-- Input Field -->
+    <div class="card input-container hidden">
+      <input type="text" id="practice-input" placeholder="Type here..." autofocus />
+    </div>
+
+    <!-- Feedback -->
+    <div id="feedback" class="card feedback hidden">
+      <h3>Progress</h3>
+      <p><strong>Progress:</strong> <span id="progress">0%</span></p>
+      <p><strong>WPM:</strong> <span id="practice-wpm">0</span></p>
+      <p><strong>Accuracy:</strong> <span id="practice-accuracy">0%</span></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='practice.js') }}"></script>
+</body>
+</html>
