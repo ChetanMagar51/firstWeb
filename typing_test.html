@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+<style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #9a4fa1, #1a6586);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Typing Container */
+.container {
+  text-align: center;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* Title and Subtitle */
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #d1d1d1;
+}
+
+/* Display Text */
+.display-text {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  height: 150px;
+  overflow-y: hidden;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* Input Field */
+.typing-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#text-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlighting Words */
+.correct {
+  color: #4caf50; /* Green for correct words */
+}
+
+.incorrect {
+  color: #f44336; /* Red for incorrect words */
+}
+
+</style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+          <h1 class="title">Typing Test</h1>
+          <p class="subtitle">Start typing the text below!</p>
+        </header>
+
+        <!-- Displayed Text -->
+        <div class="timer">Time Remaining: <span id="timer">{{ time }}</span> seconds</div>
+            <div class="display-text" id="display-text">{{ text }}</div>
+          <!-- Text will be dynamically injected here by JavaScript -->
+
+
+        <!-- Input Field -->
+        <div class="typing-area">
+          <input type="text" id="text-input" placeholder="Start typing here..." autofocus />
+        </div>
+        </div>
+
+    <script>
+        let timeLeft = {{ time }};
+        const timerDisplay = document.getElementById("timer");
+        const textInput = document.getElementById("text-input");
+        const textDisplay = document.getElementById("text-display");
+        const originalText = "{{ text }}"; // Provided by backend
+        let interval;
+
+        // Start the timer when the user starts typing
+        textInput.addEventListener("focus", startTimer);
+
+        function startTimer() {
+            if (interval) return;
+            interval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    finishTest();
+                }
+            }, 1000);
+        }
+
+        function finishTest() {
+            const typedText = textInput.value;
+            const typedWords = typedText.split(/\s+/).filter(word => word).length;
+            const wpm = Math.round((typedWords / {{ time }}) * 60);
+
+        let correctChars = 0;
+        for (let i = 0; i < typedText.length; i++) {
+            if (typedText[i] === originalText[i]) {
+                correctChars++;
+            }
+        }
+        const accuracy = Math.round((correctChars / originalText.length) * 100);
+
+        // Redirect to result page
+        window.location.href = `/result?wpm=${wpm}&accuracy=${accuracy}`;
+}
+
+    </script>
+</body>
+
+</html>
