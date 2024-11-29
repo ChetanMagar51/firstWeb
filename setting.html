@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test - Settings</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+  <style>
+    /* Background Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #9a4fa1, #1a6586);
+<!--      background: url('https://source.unsplash.com/1600x900/?typing,desk') no-repeat center center fixed;-->
+      background-size: cover;
+      color: #fff;
+      height: 100vh;
+    }
+
+
+
+
+    /* Container Styling */
+    .settings-container {
+      max-width: 500px;
+      background: rgba(82, 10, 124, 0.7);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      margin: auto;
+      margin-top: 10%;
+    }
+
+    /* Title Styling */
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #d1d1d1;
+    }
+
+    /* Button Styling */
+    .btn-custom {
+      background: linear-gradient(to right, #ff758c, #1a6586);
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(to right,#1a6586, #ff758c);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body class="cm">
+  <div class="container">
+    <div class="settings-container">
+      <!-- Header -->
+      <header>
+        <h1 class="title">Typing Test</h1>
+        <p class="subtitle">Customize your test and start typing!</p>
+      </header>
+
+      <!-- Form -->
+      <form action="typing_test" method="get">
+        <!-- Time Selection -->
+        <div class="mb-3">
+          <label for="time" class="form-label">Select Time</label>
+          <select class="form-select" name="time" id="time" required>
+            <option value="30">30 Seconds</option>
+            <option value="60">1 Minute</option>
+            <option value="120">2 Minutes</option>
+          </select>
+        </div>
+
+        <!-- Difficulty Selection -->
+        <div class="mb-3">
+          <label for="difficulty" class="form-label">Select Difficulty</label>
+          <select class="form-select" name="difficulty" id="difficulty" required>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-custom">Start Test</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
+</html>
